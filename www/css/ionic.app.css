@@ -9727,3 +9727,12 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+.foodbookContent {
+  background: #444; }
+
+.bar-dark {
+  border: none; }
+
+.foodbookBorder {
+  border: 2px solid black; }
