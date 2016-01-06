@@ -32,7 +32,9 @@
       
       <ion-nav-view></ion-nav-view>
       
-      <!-- Templates -->
+      <!-- TEMPLATES -->
+      
+      <!-- home.html -->
       <script type="text/ng-template" id = "home.html">
         <ion-view view-title="Foodbook">
             <ion-content class="foodbookContent">
@@ -73,8 +75,9 @@
         </ion-view>
       </script>
       
+      <!-- add.html -->
       <script type="text/ng-template" id="addRecipe.html">
-        <ion-view view-title="Add A New Recipe">
+        <ion-view view-title="Add A Recipe">
             <ion-content class="foodbookContent">
                 <div class="list list-inset" ng-controller="addRecipeController">
                     <label class="item item-input item-staked-label foodbookBorder">
@@ -83,17 +86,71 @@
                     </label>
                     <label class="item item-input item-staked-label foodbookBorder">
                         <span class="input-label">Ingredients</span>
-                        <textarea rows="10" cols="10" ng-model="recipeIngredients">
+                        <textarea rows="10" cols="10" ng-model="recipeIngredients"></textarea>
                     </label>
                     <label class="item item-input item-staked-label foodbookBorder">
                         <span class="input-label">Directions</span>
-                        <textarea rows="10" cols="10" ng-model="recipeDirections">
+                        <textarea rows="10" cols="10" ng-model="recipeDirections"></textarea>
                     </label>
-                    <div class="item button button-block button-positive" ng-model="addButton" ng-disabled="!recipeName||!recipeIngredients||!recipeDirections" ng-click="addRecipe()">
+                    <div class="item button button-block button-positive" ng-model="addButton" ng-disabled="!recipeName||!recipeIngredients||!recipeDirections" ng-click="addRecipe()">Save
+                    </div>
                 </div>
             </ion-content>  
         </ion-view>
       </script>
+      
+      <!-- recipeList.html -->
+      <script type="text/ng-template" id="recipeList.html">
+        <ion-view view-title="All Recipes">
+            <ion-content class="foodbookContent">
+                <ion-list ng-controller="recipeListController">
+                    <ion-item ng-repeat="recipe in recipes" class="recipeListing">
+                        <a ui-sref="recipeDetail({id:recipe.$id})" nav-direction="enter">
+                            <h2>{{recipe.recipeName}}</h2>
+                        </a>
+                    </ion-item>
+                </ion-list>
+            </ion-content>  
+        </ion-view>
+      </script>
+          
+      <!-- recipeDetail.html -->
+      <script type="text/ng-template" id="recipeDetail.html">
+        <ion-view view-title="Recipe">
+            <ion-content>
+                <div ng-controller="recipeDetailController">
+                    <h4>{{recipe.recipeName}}</h4>
+                    <h4>Ingredients</h4>
+                    <ion-list type="list-inset">
+                        <ion-item ng-repeat="ingredient in ingredeintsList">
+                            {{ingredient}}
+                        </ion-item>
+                    </ion-list>
+                    <ion-list type="list-inset">
+                        <ion-item ng-repeat="preparation in preparationList">
+                            {{preparation}}
+                        </ion-item>
+                    </ion-list>
+                </div>
+            </ion-content>  
+        </ion-view>
+      </script>
+      
+      <!-- recipeDelete.html -->
+      <script type="text/ng-template" id="deleteRecipe.html">
+        <ion-view view-title="Delete Recipes">
+            <ion-content class="foodbookContent">
+                <ion-list ng-controller="deleteRecipeController">
+                    <ion-item ng-repeat="recipe in recipes" class="recipeListing">
+                        <a ui-sref="deleteRecipe({id:recipe.$id})" nav-direction="forward">
+                            <h2>{{recipe.recipeName}}</h2>
+                        </a>
+                    </ion-item> 
+                </ion-list>
+            </ion-content>  
+        </ion-view>
+      </script>
+      
   </body>
 </html>
 

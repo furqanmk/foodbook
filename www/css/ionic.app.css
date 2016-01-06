@@ -9736,3 +9736,11 @@ a.button {
 
 .foodbookBorder {
   border: 2px solid black; }
+
+.recipeListing {
+  text-align: center; }
+  .recipeListing a {
+    text-decoration: none; }
+
+.item {
+  white-space: normal; }

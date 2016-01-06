@@ -12,3 +12,16 @@
 .foodbookBorder {
     border: 2px solid black;
 }
+
+// recipe listing
+.recipeListing {
+    text-align: center;
+    a {
+        text-decoration: none;
+    }
+}
+
+// wrapping for ion item
+.item {
+    white-space: normal;
+}
