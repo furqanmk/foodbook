@@ -24,7 +24,6 @@ foodbook.controller('deleteRecipeController', function($scope, recipeService, $s
     $scope.recipes = recipeService.all;
     
     $scope.deleteRecipe = function(id) {
-        console.log('ID' + id);
         $ionicActionSheet.show({
             destructiveText: 'Delete',
             titleText: 'Sure you want to delete',
@@ -32,8 +31,21 @@ foodbook.controller('deleteRecipeController', function($scope, recipeService, $s
             destructiveButtonClicked: function () {
                 var item = $scope.recipes.$getRecord(id);
                 $scope.recipes.$remove(item);
+                console.log("removing item");
                 return true;
             }
         });
+    };
+});
+
+foodbook.controller('editRecipeListController', function ($scope, recipeService) {
+    $scope.recipes = recipeService.all;
+});
+
+foodbook.controller('editRecipeController', function ($scope, recipeService, $stateParams, $state) {
+    $scope.recipe = recipeService.get($stateParams.id);
+    $scope.saveRecipe = function() {
+        $scope.recipe.$save();
+        $state.go('editRecipeList');
     }
 });

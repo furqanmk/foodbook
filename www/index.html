@@ -52,7 +52,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <a class="button button-full button-outline" ui-sref="editRecipe">
+                            <a class="button button-full button-outline" ui-sref="editRecipeList">
                                 <p class="">Edit Recipes</p>
                             </a>
                         </div>
@@ -117,15 +117,16 @@
       <!-- recipeDetail.html -->
       <script type="text/ng-template" id="recipeDetail.html">
         <ion-view view-title="Recipe">
-            <ion-content>
+            <ion-content class="foodbookContent">
                 <div ng-controller="recipeDetailController">
-                    <h4>{{recipe.recipeName}}</h4>
-                    <h4>Ingredients</h4>
+                    <h3 class="detailHeading">{{recipe.recipeName}}</h3>
+                    <h4 class="detailHeading">Ingredients</h4>
                     <ion-list type="list-inset">
-                        <ion-item ng-repeat="ingredient in ingredeintsList">
+                        <ion-item ng-repeat="ingredient in ingredientsList">
                             {{ingredient}}
                         </ion-item>
                     </ion-list>
+                    <h4 class="detailHeading">Directions</h4>
                     <ion-list type="list-inset">
                         <ion-item ng-repeat="preparation in preparationList">
                             {{preparation}}
@@ -138,15 +139,55 @@
       
       <!-- recipeDelete.html -->
       <script type="text/ng-template" id="deleteRecipe.html">
-        <ion-view view-title="Delete Recipes">
+        <ion-view view-title="All Recipes">
             <ion-content class="foodbookContent">
                 <ion-list ng-controller="deleteRecipeController">
-                    <ion-item ng-repeat="recipe in recipes" class="recipeListing">
-                        <a ui-sref="deleteRecipe({id:recipe.$id})" nav-direction="forward">
+                    <ion-item  ng-repeat="recipe in recipes" class="recipeListing">
+                        <a ng-click="deleteRecipe(recipe.$id)">
                             <h2>{{recipe.recipeName}}</h2>
                         </a>
-                    </ion-item> 
+                    </ion-item>
                 </ion-list>
+            </ion-content>  
+        </ion-view>
+      </script>
+      
+      <!-- recipeEditList.html -->
+      <script type="text/ng-template" id="editRecipeList.html">
+        <ion-view view-title="All Recipes">
+            <ion-content class="foodbookContent">
+                <ion-list ng-controller="editRecipeListController">
+                    <ion-item ng-repeat="recipe in recipes" class="recipeListing">
+                        <a ui-sref="editRecipe({id:recipe.$id})" nav-direction="enter">
+                            <h2>{{recipe.recipeName}}</h2>
+                        </a>
+                    </ion-item>
+                </ion-list>
+            </ion-content>  
+        </ion-view>
+      </script>
+      
+      <!-- recipeEdit.html -->
+      <script type="text/ng-template" id="editRecipe.html">
+        <ion-view view-title="Edit Recipe">
+            <ion-content class="foodbookContent">
+                <div class="list list-inset" ng-controller="editRecipeController">
+                    <label class="item item-input item-staked-label foodbookBorder">
+                        <span class="input-label">Recipe name</span>
+                        <input type="text" ng-model="recipe.recipeName">
+                    </label>
+                    <label class="item item-input item-staked-label foodbookBorder">
+                        <span class="input-label">Ingredients</span>
+                        <textarea rows="10" cols="10" ng-model="recipe.recipeIngredients"></textarea>
+                    </label>
+                    <label class="item item-input item-staked-label foodbookBorder">
+                        <span class="input-label">Directions</span>
+                        <textarea rows="10" cols="10" ng-model="recipe.recipeDirections"></textarea>
+                    </label>
+                    <div class="item button button-block button-positive" ng-model="addButton" ng-disabled="!recipe.recipeName||!recipe.recipeIngredients||!recipe.recipeDirections" ng-click="saveRecipe()">
+                        Save
+                    </div>
+                </div>
             </ion-content>  
         </ion-view>
       </script>

@@ -54,6 +54,12 @@ foodbook.config(function ($stateProvider, $urlRouterProvider) {
         controller: "deleteRecipeController"
     });
     
+    $stateProvider.state("editRecipeList", {
+        url: "/editRecipeList",
+        templateUrl: "editRecipeList.html",
+        controller: "editRecipeListController"
+    });
+    
     $stateProvider.state("editRecipe", {
         url: "/editRecipe/:id",
         templateUrl: "editRecipe.html",

@@ -8,4 +8,4 @@ foodbook.factory('recipeService', function($firebaseArray){
         }
     };
     return recipeService;
-});
+}); 
